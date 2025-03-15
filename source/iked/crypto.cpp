@@ -452,11 +452,10 @@ bool dh_init( long group, DH ** dh_data, long * dh_size )
 	//
 	// generate private and public DH values
 	//
+	DH_set0_pqg(dh, p, NULL, g);
 
 	if( !DH_generate_key( dh ) )
 		goto dh_failed;
-
-	DH_set0_pqg(dh, p, NULL, g);
 
 	*dh_data = dh;
 	*dh_size = BN_num_bytes( p );
